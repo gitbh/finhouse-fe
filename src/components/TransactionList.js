@@ -94,10 +94,8 @@ const TransactionList = () => {
       {transactions.map((transaction) => {
         return (
           <div key={transaction.id} className="ui relaxed divided list">
-            <h3>Transaction List</h3>
             <div className="item">
               <div className="content">
-
                 {transaction.data.map((trx) => {
                   return (
                     <div className="ui bulleted list">

@@ -9,6 +9,7 @@ const INITIAL_USER = {
 
 const NewComment = () => {
   const [user, setUser] = useState(INITIAL_USER);
+  const [showWrongCredentials, setShowWrongCredentials] = useState(false);
 
   const navigate = useNavigate();
 
@@ -17,13 +18,10 @@ const NewComment = () => {
     axios
       .post("https://finhouse-reporting.herokuapp.com/api/v1/user/login", user)
       .then((response) => {
-        console.log("Login Successful");
-        console.log(response.data);
-
         navigate("/home");
       })
       .catch((error) => {
-        console.log(error);
+        setShowWrongCredentials(true);
       });
   };
 
@@ -41,15 +39,13 @@ const NewComment = () => {
           setUser(INITIAL_USER);
         }}
       >
-        <div className="ui mini icon input">
-          <input
-            name="email"
-            type="text"
-            placeholder="Your Email"
-            onChange={handleOnChange}
-            value={user.email}
-          />
-        </div>
+        <input
+          name="email"
+          type="text"
+          placeholder="Your Email"
+          onChange={handleOnChange}
+          value={user.email}
+        />
         <input
           name="password"
           placeholder="Your Password"
@@ -60,6 +56,12 @@ const NewComment = () => {
         <button className="ui blue button" type="submit">
           Login
         </button>
+
+        {showWrongCredentials ? (
+          <div className="ui relaxed divided list">
+            <p>Wrong Credentials</p>
+          </div>
+        ) : null}
       </form>
     </>
   );
