@@ -15,12 +15,16 @@ const Transaction = () => {
     event.preventDefault();
     console.log(params);
     axios
-      .post("http://localhost:8080/api/v1/transaction", params, {
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      })
+      .post(
+        "https://finhouse-reporting.herokuapp.com/api/v1/transaction",
+        params,
+        {
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+        }
+      )
       .then((response) => {
         setTransaction(response.data);
         setShowResults(true);

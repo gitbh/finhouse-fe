@@ -15,7 +15,7 @@ const NewComment = () => {
   const handleLoginSubmit = (event, user) => {
     event.preventDefault();
     axios
-      .post("http://localhost:8080/api/v1/user/login", user)
+      .post("https://finhouse-reporting.herokuapp.com/api/v1/user/login", user)
       .then((response) => {
         console.log("Login Successful");
         console.log(response.data);

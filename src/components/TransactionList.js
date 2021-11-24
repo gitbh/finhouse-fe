@@ -17,12 +17,16 @@ const TransactionList = () => {
   const handleSearchSubmit = (event) => {
     event.preventDefault();
     axios
-      .post("http://localhost:8080/api/v1/transaction/list", params, {
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      })
+      .post(
+        "https://finhouse-reporting.herokuapp.com/api/v1/transaction/list",
+        params,
+        {
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+        }
+      )
       .then((response) => {
         setTransactions([...transactions, response.data]);
         console.log(transactions);
